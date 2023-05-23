@@ -1,24 +1,25 @@
-import { Args, Mutation, Query, Resolver } from "type-graphql";
+import { Arg, Args, Mutation, Query, Resolver } from "type-graphql";
 import Country from "../../models/Country.entity";
 import CreateCountryArgs from "./Country.input";
+import CountryRepository from "../../models/Country.repository";
 
 @Resolver(Country)
 export default class CountryResolver {
   // GET ALL
   @Query(() => [Country])
-  countries(): Promise<Country[]> {
+  countries(): Promise<Country[] | null> {
     return CountryRepository.getAllCountries();
   }
 
   // GET ONE BY CODE
   @Query(() => Country)
-  country(code: string): Promise<Country> {
+  country(code: string): Promise<Country | null> {
     return CountryRepository.getCountryByCode(code);
   }
 
   // GET BY CONTINENT
   @Query(() => [Country])
-  countriesByContinent(@Arg("continent") continent: string): Promise<Country> {
+  countriesByContinent(@Arg("continent") continent: string): Promise<Country[] | null> {
     return CountryRepository.getCountriesByContinent(continent);
   }
 
