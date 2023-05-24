@@ -2,7 +2,6 @@ import { Repository } from "typeorm";
 import Country from "./Country.entity";
 import { getRepository } from "../database/init";
 import CountryFixtures from "../data/country";
-import { CountryType } from "../data/country";
 
 export default class CountryRepository {
   private static repository: Repository<Country>;
@@ -26,16 +25,19 @@ export default class CountryRepository {
     return this.repository.find();
   }
 
+  // TODO: Add validations
   static async getCountryByCode(code: string): Promise<Country | null> {
     return this.repository.findOneBy({ code });
   }
 
+  // TODO: Add validations
   static async getCountriesByContinent(
     continent: string
   ): Promise<Country[] | null> {
     return this.repository.findBy({ continent });
   }
 
+  // TODO: Add validations
   static async createCountry(
     country: string,
     code: string,

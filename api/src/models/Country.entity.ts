@@ -22,7 +22,7 @@ export default class Country {
   @Field(() => ID)
   id: string;
 
-  @Column()
+  @Column({ unique: true })
   @Field()
   country: string;
 

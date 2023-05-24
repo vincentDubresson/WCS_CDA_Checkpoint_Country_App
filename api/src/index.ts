@@ -9,6 +9,8 @@ const startServer = async () => {
   const server = new ApolloServer({
     schema: await buildSchema({
       resolvers: [CountryResolver],
+      // TODO: Find a way to avoid INTERNAL_SERVER_ERROR when using this option
+      validate: { forbidUnknownValues: false }
     }),
     csrfPrevention: true,
     cache: "bounded",

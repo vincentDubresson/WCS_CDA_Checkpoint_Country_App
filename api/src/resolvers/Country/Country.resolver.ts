@@ -13,7 +13,7 @@ export default class CountryResolver {
 
   // GET ONE BY CODE
   @Query(() => Country)
-  country(code: string): Promise<Country | null> {
+  country(@Arg("code") code: string): Promise<Country | null> {
     return CountryRepository.getCountryByCode(code);
   }
 

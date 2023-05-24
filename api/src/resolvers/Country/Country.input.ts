@@ -2,6 +2,7 @@ import { IsString, Matches, MaxLength, MinLength } from "class-validator";
 import { ArgsType, Field } from "type-graphql";
 
 const codeRegex = /^[A-Z]{2}$/;
+// TODO: Find a way to validate unicode string
 const unicodeRegex = /^[\u0000-\uFFFF]$/;
 
 @ArgsType()
@@ -39,9 +40,10 @@ class CreateCountryArgs {
 
   @Field()
   @IsString({ message: "Le drapeau doit être une chaine de caractère." })
-  @Matches(unicodeRegex, {
+  // TODO: Find a way to validate unicode string
+/*   @Matches(unicodeRegex, {
     message: "Le drapeau doit être une chaine de caractère unicode."
-  })
+  }) */
   flag: string;
 }
 
